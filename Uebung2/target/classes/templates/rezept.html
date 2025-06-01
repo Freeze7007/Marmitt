@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header>
+    <h1 th:text="'[' + ${rezept.id} + '] ' + ${rezept.name}">Fehler beim Laden des Rezepts</h1>
+
+    <p><strong>Erstellt von: </strong><span th:text="${rezept.autor}">Autor unbekannt</span></p>
+    <p><strong>Veröffentlicht: </strong><span th:text="${rezept.datum}">Datum unbekannt</span></p>
+    <br>
+</header>
+
+<section>
+    <h2>Zutaten</h2>
+    <ul>
+        <li th:each="zutat : ${rezept.zutaten}" th:text="${zutat}"></li>
+    </ul>
+</section>
+
+<section>
+    <h2>Zubereitung</h2>
+    <p th:text="${rezept.zubereitung}"></p>
+    <br>
+</section>
+
+<footer>
+    <br>
+    <a href="/">Zurück zur Rezeptliste</a>
+</footer>
+</body>
+</html>

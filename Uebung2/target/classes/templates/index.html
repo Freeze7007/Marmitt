@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${Titel}">Fehler beim Laden des Titels</title>
+</head>
+<body>
+<header>
+    <h1 th:text="${Titel}">Fehler beim Laden des Titels</h1>
+</header>
+
+<section>
+    <h2>Nur die besten Rezepte</h2>
+    <ul>
+        <!-- Schleife, die durch alle Rezepte geht und die Titel als Links anzeigt -->
+        <li th:each="entry : ${RezeptMap}">
+            <!-- ID und Name des Rezepts im Format [ID] Rezeptname anzeigen -->
+            <a th:href="@{/rezept/{id}(id=${entry.key})}"
+               th:text="'[' + ${entry.key} + '] ' + ${entry.value.name}"></a>
+        </li>
+    </ul>
+</section>
+
+<footer>
+    <a href="/about">About</a>
+</footer>
+</body>
+</html>

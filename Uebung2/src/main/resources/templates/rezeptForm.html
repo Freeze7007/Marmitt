@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezept bearbeiten oder hinzufügen</title>
+</head>
+<body>
+<h1 th:text="${rezept.id == 0} ? 'Neues Rezept hinzufügen' : 'Rezept bearbeiten'">Formular</h1>
+
+<form action="/rezept/speichern" method="post">
+    <input type="hidden" name="id" th:value="${rezept.id}" />
+
+    <label for="name">Rezeptname:</label><br>
+    <input type="text" id="name" name="name" th:value="${rezept.name}" required><br><br>
+
+    <label for="autor">Autor:</label><br>
+    <input type="text" id="autor" name="autor" th:value="${rezept.autor}" required><br><br>
+
+    <label for="datum">Datum:</label><br>
+    <input type="text" id="datum" name="datum" th:value="${rezept.datum}" required><br><br>
+
+    <label for="zutaten">Zutaten (Komma getrennt):</label><br>
+    <input type="text" id="zutaten" name="zutaten" th:value="${#strings.arrayJoin(rezept.zutaten, ',')}" required><br><br>
+
+    <label for="zubereitung">Zubereitung:</label><br>
+    <textarea id="zubereitung" name="zubereitung" rows="6" cols="50" required th:text="${rezept.zubereitung}"></textarea><br><br>
+
+    <button type="submit">Speichern</button>
+</form>
+
+<br>
+<a href="/">Zurück zur Rezeptliste</a>
+</body>
+</html>
